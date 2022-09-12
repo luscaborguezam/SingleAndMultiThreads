@@ -42,9 +42,8 @@ class Cliente():
                     msg = input("Digite a operação desejada (x para sair): ")
                     if msg == '':
                         continue  # repetir o processo
-                    elif:
-                        msg == 'x'
-                    break
+                    elif msg == 'x':
+                        break
                 self.__tcp.send(byte(msg, 'ascii'))
                 result = self.__tcp.recv(1024)
                 print("= ", result.decode('ascii'))
