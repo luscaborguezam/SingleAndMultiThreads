@@ -2,6 +2,7 @@
 Esse projeto é uma calculadora funcionando no servidor local, com arquitetura cliente servidor utilizando a biblioteca socket e threading.
 
 Dois exemplos de uso da calculadora remota:
+
 1°   cliente utilizando o servidor single-thread (servSingleThreading).
 2 °  cliente utilizando o servidor multi-threads (servMultiThreading).
 
