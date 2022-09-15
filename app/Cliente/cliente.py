@@ -11,21 +11,23 @@ class Cliente():
     def __init__(self, server_ip, port):
         """
         Construtor da classe cliente
-        :param server_ip -> ip do servidor
-        :param port -> porta do serviço
+        :param server_ip: ip do servidor
+        :param port: porta do serviço
         """
 
         self.__server_ip = server_ip
         self.__port = port
         self.__tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
+        # socket.AF_INET - Conjunto de endereços padrão global
+        # socket.SOCK_STREAM - Modo TCP
+        # self._tcp é OBJETO TCP,QUE RECEBE AS CONFIGURAÇÕES DO SOCKET
     def start(self):
         """
-        Inicializa a execução do cliente
+        Método que Inicializa a execução do cliente
         """
         endpoint = (self.__server_ip, self.__port)
         try:
-            self.__tcp.connect(endpoint)
+            self.__tcp.connect(endpoint) # tentativa de conexao com o servidor
             print("Conexão realizada com sucesso!")
             self.__method()
         except Exception as e:
@@ -33,7 +35,7 @@ class Cliente():
 
     def __method(self):
         """
-        Implementa as requisições do cliente e a IHM
+        Método Implementa as requisições do cliente e a IHM
         """
         try:
             msg = ''
@@ -43,6 +45,7 @@ class Cliente():
                     continue  # repetir o processo
                 elif msg == 'x':
                     break
+                #send e recev faz parte da comunicação com o servidor
                 self.__tcp.send(bytes(msg, 'ascii'))
                 resp = self.__tcp.recv(1024)
                 print("= ", resp.decode('ascii'))
