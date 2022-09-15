@@ -4,6 +4,7 @@ Esse projeto é uma calculadora funcionando no servidor local, com arquitetura c
 Dois exemplos de uso da calculadora remota:
 
 1°   cliente utilizando o servidor single-thread (servSingleThreading).
+
 2 °  cliente utilizando o servidor multi-threads (servMultiThreading).
 
 Detalhes:
