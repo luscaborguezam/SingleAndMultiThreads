@@ -15,7 +15,7 @@ class Servidor():
         """
         self._host = host
         self._port = port
-        self.tcp = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        self._tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # self.tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # OBJETO TCP,QUE RECEBE AS CONFIGURAÇÕES DO SOCKET
         # socket(tipo/classes de endereço)
@@ -56,20 +56,20 @@ class Servidor():
                 op = 'none'
                 # identificar a operação
                 for x in operadores:
-                    if msg.find(x) > 0:
+                    if msg_s.find(x) > 0:
                         op = x
                         msg_s = msg_s.split(op)  # '10+2' -> split(+) -> ['10', '2']
                         break
                 if op == '+':
-                    resp = float(msg_s[0] + float(msg_s[1]))
-                elif op == '+':
-                    resp = float(msg_s[0] - float(msg_s[1]))
-                elif op == '+':
-                    resp = float(msg_s[0] * float(msg_s[1]))
+                    resp = float(msg_s[0]) + float(msg_s[1])
+                elif op == '-':
+                    resp = float(msg_s[0]) - float(msg_s[1])
+                elif op == '*':
+                    resp = float(msg_s[0]) * float(msg_s[1])
                 elif op == '/':
-                    resp = float(msg_s[0] / float(msg_s[1]))
+                    resp = float(msg_s[0]) / float(msg_s[1])
                 else:
-                    resp = "[ERROR] Operação Inválida"
+                    resp = f"Operação Inválida"
 
                 # enviar a resposta
                 con.send(bytes(str(resp), 'ascii'))
@@ -82,4 +82,4 @@ class Servidor():
             except Exception as e:
                 # 2° - excessão geral
                 print("Erro nos dados recebidos do cliente ->  ", client, ": ", e.args)
-                con.send(bytes('Erro', 'ascii'))
+                con.send(bytes(f'{msg_s}\n{op}\nErro: {e}', 'ascii'))

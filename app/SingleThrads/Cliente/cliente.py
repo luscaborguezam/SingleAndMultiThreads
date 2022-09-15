@@ -17,7 +17,7 @@ class Cliente():
 
         self.__server_ip = server_ip
         self.__port = port
-        self.__tcp = socket.socket(socket.AF.INET, socket.SOCK_STREAM)
+        self.__tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def start(self):
         """
@@ -27,7 +27,6 @@ class Cliente():
         try:
             self.__tcp.connect(endpoint)
             print("Conexão realizada com sucesso!")
-            self.__tcp.connect(endpoint)
             self.__method()
         except Exception as e:
             print("Erro na conexão com o servidor: ".e.args)
